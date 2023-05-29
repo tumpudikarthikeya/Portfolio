@@ -1,0 +1,14 @@
+site:
+  title: "Portfolio"
+
+server:
+  files:
+    dev:
+      contentRoot: "build/processedResources/js/main/public"
+      script: "build/developmentExecutable/Portfolio.js"
+      api: "build/libs/Portfolio.jar"
+    prod:
+      script: "build/distributions/Portfolio.js"
+      siteRoot: ".kobweb/site"
+
+  port: 8080
