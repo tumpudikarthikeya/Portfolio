@@ -11,6 +11,7 @@ import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.id
 import com.varabyte.kobweb.compose.ui.modifiers.margin
+import com.varabyte.kobweb.compose.ui.modifiers.padding
 import com.varabyte.kobweb.silk.components.layout.SimpleGrid
 import com.varabyte.kobweb.silk.components.layout.numColumns
 import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
@@ -20,10 +21,13 @@ import org.jetbrains.compose.web.css.px
 
 @Composable
 fun ProjectsSection() {
+    val breakpoint = rememberBreakpoint()
     Box(
         modifier = Modifier
-            .fillMaxWidth(90.percent)
-            .margin(top=100.px),
+            .fillMaxWidth(if(breakpoint > Breakpoint.MD) 65.percent else 90.percent)
+            .id("projects")
+            .padding(topBottom = 100.px)
+            ,
         contentAlignment = Alignment.Center
     ) {
         ProjectContent()
@@ -33,12 +37,14 @@ fun ProjectsSection() {
 
 @Composable
 fun ProjectContent(){
-    Column(modifier = Modifier
-        .fillMaxWidth().id("projects"),
-        horizontalAlignment = Alignment.CenterHorizontally) {
-        SectionTitle(title = Sections.Projects.title, subTitle = Sections.Projects.subtitle)
-        ProjectCards()
-    }
+        Column(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            SectionTitle(Sections.Projects)
+            ProjectCards()
+        }
 }
 
 @Composable
@@ -47,7 +53,7 @@ fun ProjectCards() {
         horizontalAlignment = Alignment.CenterHorizontally) {
         SimpleGrid(numColumns( base = 1, sm = 1, md = 2)) {
         ProjectData.values().forEach { project ->
-            ProjectCard(modifier = Modifier.margin(40.px), project, "")
+            ProjectCard(modifier = Modifier.margin(40.px), project)
         }
     }
  }

@@ -4,8 +4,8 @@ object Constants {
     const val FONT_FAMILY = "Poppins"
     var temp = 1
     const val INSTA_ID = "https://www.instagram.com/bhanu._.karthikeya/"
-    const val TWITTER_ID = "https://twitter.com/"
-    const val GIT_ID = ""
+    const val TWITTER_ID = "https://twitter.com/Karthikeya_369"
+    const val GIT_ID = "https://github.com/tumpudikarthikeya"
     const val MY_NAME = "Karthikeya"
     const val LINKEDIN_ID = "https://www.linkedin.com/in/b-v-n-s-s-karthikeya-tumpudi-58b013249/"
     const val INTRO_TITLE = "Web and App Developer"
@@ -15,10 +15,10 @@ object Constants {
 }
 object Res {
     object Imaage {
+        const val fileDownload = "file-download.svg"
         const val rightArrow ="rightArrow.png"
         const val project1 ="project1.png"
         const val project2 ="project2.png"
-        const val name = "name.svg"
         const val ExternalLink = "externalLink.svg"
         const val Intro_Image="Intro_Image.jpg"
         const val HI ="hi.svg"

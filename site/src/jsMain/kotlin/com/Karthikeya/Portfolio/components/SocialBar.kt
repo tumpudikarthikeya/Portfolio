@@ -1,13 +1,13 @@
 package com.Karthikeya.Portfolio.components
 
 import androidx.compose.runtime.Composable
-import com.Karthikeya.Portfolio.models.Theme
 import com.Karthikeya.Portfolio.styles.SocialLinkIconLink
 import com.Karthikeya.Portfolio.util.Constants.GIT_ID
 import com.Karthikeya.Portfolio.util.Constants.INSTA_ID
 import com.Karthikeya.Portfolio.util.Constants.LINKEDIN_ID
 import com.Karthikeya.Portfolio.util.Constants.TWITTER_ID
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
+import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
@@ -17,20 +17,30 @@ import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.navigation.OpenLinkStrategy
 import com.varabyte.kobweb.silk.components.icons.fa.*
 import com.varabyte.kobweb.silk.components.navigation.Link
+import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.components.style.toModifier
+import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 
 @Composable
 fun SocialBar() {
-    Column (modifier = Modifier
-        .maxWidth(50.px)
-        .padding(10.px)
-        .borderRadius(20.px)
-        .backgroundColor(Colors.White),
-        verticalArrangement = Arrangement.Center
-    ) {
-        SocialLinks()
+    val breakpoint = rememberBreakpoint()
+    Box(modifier = Modifier.margin(right = if(breakpoint >=Breakpoint.MD)10.percent else 20.px , left = 0.px),
+        contentAlignment = Alignment.CenterStart) {
+        Column(
+            modifier = Modifier
+                .margin(left = 0.px)
+                .maxWidth(50.px)
+                .height(200.px)
+                .padding(10.px)
+                .borderRadius(20.px)
+                .backgroundColor(Colors.White),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            SocialLinks()
+        }
     }
 
 }
@@ -76,7 +86,7 @@ fun SocialLinks(footer : Int = 0 ) {
     {
         FaTwitter(size = IconSize.LG,
             modifier = SocialLinkIconLink.toModifier()
-                .margin(bottom = 40.px))
+                .margin(bottom = if(footer == 1) 40.px else 0.px))
     }
 
 }

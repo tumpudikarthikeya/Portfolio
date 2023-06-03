@@ -34,10 +34,11 @@ fun Header(onMenuClicked:() -> Unit) {
 
     Row( modifier = Modifier
         .position(Position.Fixed)
-        .fillMaxWidth(if(breakpoint > Breakpoint.MD) 65.percent else 90.percent)
+        .fillMaxWidth(if(breakpoint > Breakpoint.LG) 65.percent else if (breakpoint > Breakpoint.MD) 80.percent  else  95.percent)
         .margin(bottom = 10.px)
         .padding(20.px)
         .borderRadius(20.px)
+        .zIndex(1)
         .backgroundColor(Colors.White),
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically)
@@ -77,17 +78,16 @@ fun LeftSide(breakpoint: Breakpoint,
 @Composable
 fun RightSide() {
     Row (modifier = Modifier
-        .fillMaxWidth(),
+        .fillMaxWidth().gap(30.px),
         horizontalArrangement = Arrangement.End) {
 
         Sections.values().forEach { section ->
             Link( modifier = NavigationItemStyle.toModifier()
-                .padding(right = 30.px)
                 .fontFamily(FONT_FAMILY)
                 .fontSize(15.px)
                 .fontWeight(FontWeight.SemiBold)
                 .textDecorationLine(TextDecorationLine.None),
-                text = section.title,
+                text = section.name,
                 path = section.path)
         }
 

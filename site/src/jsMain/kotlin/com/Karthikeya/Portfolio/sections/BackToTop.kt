@@ -5,7 +5,6 @@ import com.Karthikeya.Portfolio.models.Theme
 import com.Karthikeya.Portfolio.styles.BackToTopStyle
 import com.varabyte.kobweb.compose.css.Cursor
 import com.varabyte.kobweb.compose.css.Visibility
-import com.varabyte.kobweb.compose.css.WhiteSpace
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
 import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
@@ -17,7 +16,6 @@ import com.varabyte.kobweb.compose.ui.styleModifier
 import com.varabyte.kobweb.silk.components.icons.fa.FaArrowUp
 import com.varabyte.kobweb.silk.components.icons.fa.IconSize
 import com.varabyte.kobweb.silk.components.style.toModifier
-import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
 import kotlinx.browser.document
 import kotlinx.browser.window
 import org.jetbrains.compose.web.css.Position
@@ -25,7 +23,6 @@ import org.jetbrains.compose.web.css.px
 
 @Composable
 fun BackToTop() {
-        val breakpoint = rememberBreakpoint()
         var scroll : Double? by remember { mutableStateOf(null) }
 
         LaunchedEffect(Unit) {

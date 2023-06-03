@@ -3,7 +3,6 @@ package com.Karthikeya.Portfolio.components
 import androidx.compose.runtime.Composable
 import com.Karthikeya.Portfolio.models.SkillModel
 import com.Karthikeya.Portfolio.models.Theme
-import com.Karthikeya.Portfolio.styles.AboutCardStyle
 import com.Karthikeya.Portfolio.styles.SkillCardStyle
 import com.Karthikeya.Portfolio.util.Constants
 import com.Karthikeya.Portfolio.util.Constants.rate
@@ -16,16 +15,14 @@ import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
-import com.varabyte.kobweb.compose.ui.graphics.Colors
 import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.silk.components.graphics.Image
-import com.varabyte.kobweb.silk.components.icons.fa.FaAward
-import com.varabyte.kobweb.silk.components.icons.fa.FaIdBadge
-import com.varabyte.kobweb.silk.components.icons.fa.IconSize
 import com.varabyte.kobweb.silk.components.layout.SimpleGrid
 import com.varabyte.kobweb.silk.components.layout.numColumns
+import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.components.style.toModifier
+import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Text
@@ -48,7 +45,6 @@ fun SkillCards() {
 @Composable
 fun SkillCard(skill: SkillModel) {
     Box(modifier = SkillCardStyle.toModifier()
-        .id("mainbox")
         .borderRadius(
             topLeft = if(temp==4) 0.px else 50.px ,
             topRight = if(temp==3) 0.px else 50.px,
@@ -58,10 +54,10 @@ fun SkillCard(skill: SkillModel) {
         .padding(20.px)
         .margin(20.px),
         contentAlignment = Alignment.Center) {
-        Column(modifier = Modifier.fillMaxSize().id("col1"),
+        Column(modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally) {
             Domain(skill.skillData.domain)
-            SimpleGrid(numColumns(base = 2), modifier = Modifier.fillMaxSize()) {
+            SimpleGrid(numColumns(base = 1 , sm = 2), modifier = Modifier.fillMaxSize()) {
             skill.skillData.skills.forEach {
                         SkillItem(it, 0)
                 }
@@ -74,7 +70,6 @@ fun SkillCard(skill: SkillModel) {
 fun Domain(domain : String) {
     P(
         attrs = Modifier
-            .id("domain")
             .fontFamily(Constants.FONT_FAMILY)
             .fontSize(13.px)
             .fontWeight(FontWeight.Bolder)
@@ -86,23 +81,21 @@ fun Domain(domain : String) {
 }
 @Composable
 fun SkillItem(skill : String , rating : Int) {
+    val  breakpoint = rememberBreakpoint()
     Row(modifier = Modifier.fillMaxSize()
-        .id("row1")
         .padding(10.px)
         , verticalAlignment = Alignment.Top) {
-        Image(src = badge)
+        Image(src = badge , modifier = Modifier.size(if(breakpoint> Breakpoint.SM)20.px else 15.px))
         Column(modifier = Modifier.fillMaxSize()
-            .id("col2")
             .padding(5.px),
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.Top) {
             P(
                 attrs = Modifier
                     .fontFamily(Constants.FONT_FAMILY)
-                    .fontSize(16.px)
+                    .fontSize(if(breakpoint> Breakpoint.SM)16.px else 11.px)
                     .margin(bottom = 0.px)
                     .fontWeight(FontWeight.Bold)
-                    .id("skillname")
                     .color(Theme.Secondary.rgb)
                     .toAttrs()
             ) {
@@ -113,8 +106,7 @@ fun SkillItem(skill : String , rating : Int) {
                     .margin(top = 0.px)
                     .fontFamily(Constants.FONT_FAMILY)
                     .margin(top = 4.px)
-                    .fontSize(15.px)
-                    .id("skilllevel")
+                    .fontSize(if(breakpoint> Breakpoint.SM)15.px else 10.px)
                     .fontWeight(FontWeight.Normal)
                     .color(Theme.DarkGray.rgb)
                     .toAttrs()

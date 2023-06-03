@@ -1,15 +1,12 @@
 package com.Karthikeya.Portfolio.styles
 
-import com.Karthikeya.Portfolio.models.Theme
 import com.varabyte.kobweb.compose.css.CSSTransition
 import com.varabyte.kobweb.compose.ui.Modifier
-import com.varabyte.kobweb.compose.ui.graphics.Colors
 import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.silk.components.style.ComponentStyle
 import com.varabyte.kobweb.silk.components.style.hover
 import org.jetbrains.compose.web.ExperimentalComposeWebApi
 import org.jetbrains.compose.web.css.*
-import org.jetbrains.compose.web.dom.Col
 
 @OptIn(ExperimentalComposeWebApi::class)
 val AboutCardStyle by ComponentStyle {
@@ -23,3 +20,4 @@ val AboutCardStyle by ComponentStyle {
             .transform { rotate((-10).deg) }
     }
 }
+

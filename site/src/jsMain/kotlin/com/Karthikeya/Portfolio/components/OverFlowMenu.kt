@@ -17,7 +17,6 @@ import com.varabyte.kobweb.compose.ui.graphics.Colors
 import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.navigation.OpenLinkStrategy
-import com.varabyte.kobweb.silk.components.icons.fa.FaXRay
 import com.varabyte.kobweb.silk.components.icons.fa.FaXmark
 import com.varabyte.kobweb.silk.components.icons.fa.IconSize
 import com.varabyte.kobweb.silk.components.navigation.Link
@@ -76,6 +75,7 @@ fun OverFlowMenu(onMenuClosed : () -> Unit){
                     attrs = MyNameStyle.toModifier()
                         .fontFamily(Constants.FONT_FAMILY)
                         .fontSize(20.px)
+                        .margin(right = 10.px)
                         .fontWeight(FontWeight.Bold)
                         .color(Theme.Primary.rgb)
                         .toAttrs()

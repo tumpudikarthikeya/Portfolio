@@ -19,7 +19,9 @@ import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.navigation.OpenLinkStrategy
 import com.varabyte.kobweb.silk.components.graphics.Image
 import com.varabyte.kobweb.silk.components.navigation.Link
+import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.components.style.toModifier
+import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.P
@@ -28,11 +30,11 @@ import org.jetbrains.compose.web.dom.Text
 @Composable
 fun ProjectCard(
     modifier: Modifier = Modifier,
-    project : ProjectData,
-    link : String
+    project : ProjectData
 ) {
+    val breakpoint = rememberBreakpoint()
     Box(modifier = modifier
-        .maxWidth(300.px)
+        .maxWidth(if(breakpoint >= Breakpoint.SM)300.px else 200.px)
         .fillMaxSize()
         .margin(20.px)
         , contentAlignment = Alignment.Center) {
@@ -40,7 +42,7 @@ fun ProjectCard(
             modifier = ProjectSectionStyle.toModifier()
             .textDecorationLine(TextDecorationLine.None)
             .fillMaxWidth(),
-            path = link,
+            path = project.link,
             openExternalLinksStrategy = OpenLinkStrategy.IN_NEW_TAB
         ) {
             Column(
@@ -55,7 +57,7 @@ fun ProjectCard(
                 ) {
                     Image(
                         modifier = Modifier
-                            .size(300.px)
+                            .size(if(breakpoint >= Breakpoint.SM)300.px else 200.px)
                             .objectFit(ObjectFit.Cover),
                         src = project.image,
                         desc = "project image"
@@ -67,7 +69,7 @@ fun ProjectCard(
                         contentAlignment = Alignment.Center
                     ) {
                         Image(
-                            src = ExternalLink, modifier = Modifier
+                            src = ExternalLink, modifier = Modifier.fillMaxWidth().margin(left = 20.px)
                                 .id("linkIcon")
                                 .size(25.px)
                         )

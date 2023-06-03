@@ -1,9 +1,7 @@
 package com.Karthikeya.Portfolio.sections
 
 import androidx.compose.runtime.Composable
-import com.Karthikeya.Portfolio.components.Contactform
 import com.Karthikeya.Portfolio.components.FooterSocialBar
-import com.Karthikeya.Portfolio.components.SectionTitle
 import com.Karthikeya.Portfolio.models.Sections
 import com.Karthikeya.Portfolio.models.Theme
 import com.Karthikeya.Portfolio.styles.NavigationItemStyle
@@ -21,9 +19,7 @@ import com.varabyte.kobweb.compose.ui.graphics.Colors
 import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.silk.components.navigation.Link
-import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.components.style.toModifier
-import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Text

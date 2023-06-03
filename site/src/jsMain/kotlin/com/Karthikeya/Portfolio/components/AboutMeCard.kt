@@ -16,7 +16,9 @@ import com.varabyte.kobweb.compose.ui.graphics.Colors
 import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.silk.components.icons.fa.*
+import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.components.style.toModifier
+import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Text
@@ -34,11 +36,12 @@ fun AboutMeCard() {
 
 @Composable
 fun AboutMeItem(card: AboutMeCardData) {
+    val breakpoint = rememberBreakpoint()
     Box(modifier = AboutCardStyle.toModifier()
         .backgroundColor(Colors.White)
         .margin(right = if(card.iconno != 3) 20.px else 0.px)
-        .width(120.px)
-        .height(100.px)
+        .width(if(breakpoint >= Breakpoint.SM)120.px else 90.px)
+        .height(if(breakpoint >= Breakpoint.SM)100.px else 80.px)
         .borderRadius(
             topRightAndBottomLeft = 20.px,
             topLeft = 20.px),
@@ -48,25 +51,25 @@ fun AboutMeItem(card: AboutMeCardData) {
             horizontalAlignment = Alignment.CenterHorizontally) {
             if(card.iconno == 1){
                 FaAward(
-                    size = IconSize.LG,
+                    size = if(breakpoint >= Breakpoint.SM) IconSize.LG else IconSize.SM,
                     modifier = Modifier.margin(top=15.px)
                 )
             }
             else if(card.iconno == 2){
                 FaSuitcase(
-                    size = IconSize.LG,
+                    size = if(breakpoint >= Breakpoint.SM) IconSize.LG else IconSize.SM,
                     modifier = Modifier.margin(top=15.px))
             }
             else{
                 FaHeadset(
-                    size = IconSize.LG,
+                    size = if(breakpoint >= Breakpoint.SM) IconSize.LG else IconSize.SM,
                     modifier = Modifier.margin(top=15.px)
                 )
             }
             P(
                 attrs = Modifier
                     .fontFamily(Constants.FONT_FAMILY)
-                    .fontSize(15.px)
+                    .fontSize(if(breakpoint >= Breakpoint.SM) 15.px else 10.px)
                     .margin(top = 10.px)
                     .fontWeight(FontWeight.Bold)
                     .color(Theme.Primary.rgb)

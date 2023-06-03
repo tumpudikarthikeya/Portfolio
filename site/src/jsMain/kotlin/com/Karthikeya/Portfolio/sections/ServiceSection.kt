@@ -11,7 +11,7 @@ import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.id
-import com.varabyte.kobweb.compose.ui.modifiers.margin
+import com.varabyte.kobweb.compose.ui.modifiers.padding
 import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
 import org.jetbrains.compose.web.css.percent
@@ -23,14 +23,14 @@ fun ServiceSection() {
     val breakpoint = rememberBreakpoint()
     Box(
         modifier = Modifier
-            .fillMaxWidth(if (breakpoint > Breakpoint.MD) 75.percent else 90.percent)
-            .id("services")
-            .margin(top=100.px),
+            .fillMaxWidth(if (breakpoint > Breakpoint.MD) 65.percent else 90.percent)
+            .padding(topBottom = 100.px)
+            .id("services"),
         contentAlignment = Alignment.Center
     ) {
         Column(verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally) {
-            SectionTitle(Sections.Services.title, Sections.Services.subtitle)
+            SectionTitle(Sections.Services)
             ServiceCard(breakpoint)
         }
     }

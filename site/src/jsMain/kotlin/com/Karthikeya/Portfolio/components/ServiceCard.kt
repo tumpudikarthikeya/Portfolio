@@ -6,15 +6,14 @@ import com.Karthikeya.Portfolio.styles.ServiceMDCardStyle
 import com.Karthikeya.Portfolio.styles.ServiceSMCardStyle
 import com.Karthikeya.Portfolio.util.Constants
 import com.Karthikeya.Portfolio.util.Res.Imaage.rightArrow
+import com.varabyte.kobweb.compose.css.Cursor
 import com.varabyte.kobweb.compose.css.FontWeight
-import com.varabyte.kobweb.compose.css.PointerEvents
 import com.varabyte.kobweb.compose.css.TextAlign
 import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
-import com.varabyte.kobweb.compose.ui.graphics.Colors
 import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.silk.components.graphics.Image
@@ -98,23 +97,21 @@ fun CardData(icon : Int, title :String) {
         ) {
             Text(title)
         }
-        Row(verticalAlignment = Alignment.CenterVertically) {
+        Row(verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.cursor(Cursor.Pointer)) {
             P(
                 attrs = Modifier
-                    .margin(top = 0.px)
                     .fontFamily(Constants.FONT_FAMILY)
                     .textAlign(TextAlign.Center)
                     .margin(top = 4.px, right = 4.px)
                     .fontSize(10.px)
-                    .onFocus { }
-                    .id("skilllevel")
                     .fontWeight(FontWeight.Normal)
                     .color(Theme.DarkGray.rgb)
                     .toAttrs()
             ) {
                 Text("View More")
             }
-            Image(src = rightArrow)
+            Image(src = rightArrow, modifier = Modifier.size(10.px).margin(top = 4.px))
         }
     }
 }

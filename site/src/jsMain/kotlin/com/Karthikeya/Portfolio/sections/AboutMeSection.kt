@@ -9,6 +9,7 @@ import com.Karthikeya.Portfolio.styles.MainButtonStyle
 import com.Karthikeya.Portfolio.util.Constants
 import com.Karthikeya.Portfolio.util.Constants.ABOUT_ME
 import com.Karthikeya.Portfolio.util.Res.Imaage.Intro_Image
+import com.Karthikeya.Portfolio.util.Res.Imaage.fileDownload
 import com.varabyte.kobweb.compose.css.Cursor
 import com.varabyte.kobweb.compose.css.FontSize
 import com.varabyte.kobweb.compose.css.FontWeight
@@ -23,8 +24,6 @@ import com.varabyte.kobweb.compose.ui.graphics.Colors
 import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.silk.components.graphics.Image
-import com.varabyte.kobweb.silk.components.icons.fa.FaDownload
-import com.varabyte.kobweb.silk.components.icons.fa.IconSize
 import com.varabyte.kobweb.silk.components.layout.SimpleGrid
 import com.varabyte.kobweb.silk.components.layout.numColumns
 import com.varabyte.kobweb.silk.components.navigation.Link
@@ -42,14 +41,13 @@ fun AboutMeSection() {
     val breakpoint = rememberBreakpoint()
     Box(
         modifier = Modifier
-            .fillMaxWidth(if(breakpoint > Breakpoint.MD) 65.percent else 90.percent)
-            .id("about")
-            .margin(top=200.px),
-        contentAlignment = Alignment.Center
+            .fillMaxWidth(if(breakpoint > Breakpoint.LG) 65.percent else if (breakpoint > Breakpoint.MD) 80.percent  else  95.percent)
+            .padding(topBottom = 100.px).id("about")
+        ,contentAlignment = Alignment.Center
     ) {
         Column(verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally) {
-            SectionTitle(Sections.About.title, Sections.About.subtitle)
+            SectionTitle(Sections.About)
             AboutMeContent(breakpoint)
         }
     }
@@ -60,11 +58,12 @@ fun AboutMeSection() {
 @Composable
 fun AboutMeContent(breakpoint: Breakpoint) {
     Column(
-        modifier = Modifier.margin(top=30.px),verticalArrangement = Arrangement.Center
+
+        verticalArrangement = Arrangement.Center
     , horizontalAlignment = Alignment.CenterHorizontally) {
         SimpleGrid(numColumns = numColumns(base = 1, md = 2)) {
             AboutImage(breakpoint)
-            AboutText()
+            AboutText(breakpoint)
         }
     }
 }
@@ -81,14 +80,14 @@ fun AboutImage(breakpoint: Breakpoint) {
                     topRightAndBottomLeft = 100.px,
                     topLeft = 100.px
                 )
-                .size(350.px)
+                .size(if(breakpoint >= Breakpoint.SM)350.px else 250.px)
                 .margin(leftRight = if (breakpoint >= Breakpoint.MD) 50.px else 0.px)
         )
     }
 }
 
 @Composable
-fun AboutText() {
+fun AboutText(breakpoint: Breakpoint) {
     Column(modifier = Modifier.fillMaxSize()
         .margin(top=40.px),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -99,7 +98,7 @@ fun AboutText() {
                 .margin(topBottom = 0.px)
                 .margin(topBottom = 30.px)
                 .fontFamily(Constants.FONT_FAMILY)
-                .fontSize(16.px)
+                .fontSize(if(breakpoint >= Breakpoint.SM)16.px else 15.px)
                 .fontWeight(FontWeight.Normal)
                 .color(Theme.DarkGray.rgb)
                 .toAttrs()
@@ -107,19 +106,25 @@ fun AboutText() {
             Text(value = ABOUT_ME)
         }
         Button(attrs = MainButtonStyle.toModifier()
-            .height(55.px)
+            .height(60.px)
+            .id("Resume")
             .border(width = 0.px)
-            .borderRadius(r =10.px)
+            .borderRadius(r =20.px)
             .backgroundColor(Theme.Primary.rgb)
             .color(Colors.White)
             .cursor(Cursor.Pointer)
             .toAttrs()) {
-            Link(path = Sections.Contact.path, text = "Download CV",
-                modifier = Modifier.textDecorationLine(TextDecorationLine.None)
-                    .color(Colors.White)
-                    .fontSize(FontSize.Medium)
-                    .margin(right = 10.px))
-            FaDownload(size = IconSize.LG)
+            Row (modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center){
+                Link( path = "https://drive.google.com/file/d/1kOHqyVgRw2KdiE7sswCFCmVJc_8U2vA4/view?usp=sharing", text = "Download CV",
+                    modifier = Modifier.textDecorationLine(TextDecorationLine.None)
+                        .color(Colors.White)
+                        .fontSize(FontSize.Medium)
+                        .margin(right = 10.px)
+                )
+                Image(fileDownload)
+            }
         }
     }
 }

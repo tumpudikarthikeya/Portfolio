@@ -11,7 +11,6 @@ import com.Karthikeya.Portfolio.models.Theme
 import com.Karthikeya.Portfolio.util.Constants
 import com.varabyte.kobweb.compose.css.Cursor
 import com.varabyte.kobweb.compose.css.FontWeight
-import com.varabyte.kobweb.compose.css.Overflow
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
 import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
@@ -35,14 +34,14 @@ fun QualificationSection() {
     val switchTab = remember { mutableStateOf("education") }
     Box(
         modifier = Modifier
-            .fillMaxWidth(if (breakpoint > Breakpoint.MD) 75.percent else 90.percent)
-            .margin(top=100.px)
-            .id("qualifications"),
-        contentAlignment = Alignment.Center
+            .fillMaxWidth(if (breakpoint > Breakpoint.MD) 65.percent else 90.percent)
+            .padding(topBottom = 100.px).id("qualifications")
+        ,contentAlignment = Alignment.Center
     ) {
         Column(verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally) {
-            SectionTitle(Sections.Qualifications.title, Sections.Qualifications.subtitle)
+            SectionTitle(Sections.Qualifications,
+                )
 
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
 //navicons
