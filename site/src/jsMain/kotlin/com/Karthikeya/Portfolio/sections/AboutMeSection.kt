@@ -88,42 +88,50 @@ fun AboutImage(breakpoint: Breakpoint) {
 
 @Composable
 fun AboutText(breakpoint: Breakpoint) {
-    Column(modifier = Modifier.fillMaxSize()
-        .margin(top=40.px),
+    Column(
+        modifier = Modifier.fillMaxSize()
+            .margin(top = 40.px),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center) {
+        verticalArrangement = Arrangement.Center
+    ) {
         AboutMeCard()
         P(
             attrs = Modifier
                 .margin(topBottom = 0.px)
                 .margin(topBottom = 30.px)
                 .fontFamily(Constants.FONT_FAMILY)
-                .fontSize(if(breakpoint >= Breakpoint.SM)16.px else 15.px)
+                .fontSize(if (breakpoint >= Breakpoint.SM) 16.px else 15.px)
                 .fontWeight(FontWeight.Normal)
                 .color(Theme.DarkGray.rgb)
                 .toAttrs()
         ) {
             Text(value = ABOUT_ME)
         }
-        Button(attrs = MainButtonStyle.toModifier()
-            .height(60.px)
-            .id("Resume")
-            .border(width = 0.px)
-            .borderRadius(r =20.px)
-            .backgroundColor(Theme.Primary.rgb)
-            .color(Colors.White)
-            .cursor(Cursor.Pointer)
-            .toAttrs()) {
-            Row (modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center){
-                Link( path = "https://drive.google.com/file/d/1kOHqyVgRw2KdiE7sswCFCmVJc_8U2vA4/view?usp=sharing", text = "Download CV",
-                    modifier = Modifier.textDecorationLine(TextDecorationLine.None)
+        Link(path = "https://drive.google.com/file/d/1kOHqyVgRw2KdiE7sswCFCmVJc_8U2vA4/view?usp=sharing") {
+            Button(
+                attrs = MainButtonStyle.toModifier()
+                    .height(60.px)
+                    .id("Resume")
+                    .border(width = 0.px)
+                    .borderRadius(r = 20.px)
+                    .backgroundColor(Theme.Primary.rgb)
+                    .color(Colors.White)
+                    .cursor(Cursor.Pointer)
+                    .toAttrs()
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    P( attrs = Modifier.textDecorationLine(TextDecorationLine.None)
                         .color(Colors.White)
                         .fontSize(FontSize.Medium)
-                        .margin(right = 10.px)
-                )
-                Image(fileDownload)
+                        .margin(right = 10.px).toAttrs() ) {
+                        Text(value = "Download CV")
+                    }
+                    Image(fileDownload)
+                }
             }
         }
     }
