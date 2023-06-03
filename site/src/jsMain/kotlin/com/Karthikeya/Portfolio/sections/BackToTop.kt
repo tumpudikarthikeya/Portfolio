@@ -15,14 +15,18 @@ import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.compose.ui.styleModifier
 import com.varabyte.kobweb.silk.components.icons.fa.FaArrowUp
 import com.varabyte.kobweb.silk.components.icons.fa.IconSize
+import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.components.style.toModifier
+import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
 import kotlinx.browser.document
 import kotlinx.browser.window
 import org.jetbrains.compose.web.css.Position
+import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 
 @Composable
 fun BackToTop() {
+        val breakpoint = rememberBreakpoint()
         var scroll : Double? by remember { mutableStateOf(null) }
 
         LaunchedEffect(Unit) {
@@ -31,7 +35,7 @@ fun BackToTop() {
                 })
         }
         Column(modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth(if(breakpoint > Breakpoint.LG) 65.percent else if (breakpoint > Breakpoint.MD) 80.percent  else  95.percent)
                 .position(Position.Fixed)
                 .zIndex(1)
                 .styleModifier {
