@@ -131,7 +131,7 @@ fun ExpTimeLine() {
                 )
             }
             Column(modifier = Modifier.margin(left = ((-8.5).px))) {
-                QualificationData.values().slice(4..5).forEachIndexed { index, qualification ->
+                QualificationData.values().slice(3..5).forEachIndexed { index, qualification ->
                     if (index%2 != 0){
                         QualificationText(qualification,1, Modifier.margin(top = 100.px))
                     }

@@ -107,7 +107,8 @@ fun AboutText(breakpoint: Breakpoint) {
         ) {
             Text(value = ABOUT_ME)
         }
-        Link(path = "https://drive.google.com/file/d/1kOHqyVgRw2KdiE7sswCFCmVJc_8U2vA4/view?usp=sharing") {
+        Link(path = "https://drive.google.com/file/d/1kOHqyVgRw2KdiE7sswCFCmVJc_8U2vA4/view?usp=sharing",
+            modifier = Modifier.textDecorationLine(TextDecorationLine.None)) {
             Button(
                 attrs = MainButtonStyle.toModifier()
                     .height(60.px)
