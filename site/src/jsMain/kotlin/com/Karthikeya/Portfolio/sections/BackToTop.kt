@@ -36,6 +36,9 @@ fun BackToTop() {
         }
         Box(modifier = Modifier.fillMaxHeight()
                 .fillMaxWidth(if(breakpoint > Breakpoint.LG) 65.percent else if (breakpoint > Breakpoint.MD) 80.percent  else  95.percent)
+                .styleModifier {
+                        property("pointer-events", "none")
+                }
 
         ) {
                 Column(
