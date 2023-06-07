@@ -45,13 +45,13 @@ fun BackToTop() {
         ) {
                 Box(
                         modifier = BackToTopStyle.toModifier()
-                                .size(if(breakpoint >= Breakpoint.MD) 50.px else 30.px)
+                                .size(if(breakpoint >= Breakpoint.MD) 50.px else 25.px)
                                 .visibility(
                                         if(scroll != null && scroll!! >400.0 ) Visibility.Visible
                                         else Visibility.Hidden)
-                                .borderRadius(30.px)
-                                .margin(bottom = if(breakpoint > Breakpoint.MD) 40.px else 20.px,
-                                        right = if(breakpoint > Breakpoint.MD) 40.px else 20.px)
+                                .borderRadius(if(breakpoint >= Breakpoint.MD) 30.px else 10.px)
+                                .margin(bottom = if(breakpoint > Breakpoint.MD) 40.px else 10.px,
+                                        right = if(breakpoint > Breakpoint.MD) 40.px else 10.px)
                                 .backgroundColor(Theme.Primary.rgb)
                                 .opacity(0.5f)
                                 .cursor(Cursor.Pointer)
@@ -62,7 +62,7 @@ fun BackToTop() {
                         contentAlignment = Alignment.Center
                 ) {
                         FaArrowUp(modifier = Modifier.color(Colors.White),
-                                size = if(breakpoint >= Breakpoint.MD) IconSize.LG else IconSize.SM)
+                                size = if(breakpoint >= Breakpoint.MD) IconSize.LG else IconSize.XS)
                 }
 
         }
