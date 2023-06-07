@@ -54,12 +54,12 @@ fun BackToTop() {
                 ) {
                         Box(
                                 modifier = BackToTopStyle.toModifier()
-                                        .size(if (breakpoint > Breakpoint.MD) 50.px else 25.px)
+                                        .size(if (breakpoint > Breakpoint.MD) 50.px else 30.px)
                                         .visibility(
                                                 if (scroll != null && scroll!! > 400.0) Visibility.Visible
                                                 else Visibility.Hidden
                                         )
-                                        .borderRadius(if (breakpoint >= Breakpoint.MD) 30.px else 15.px)
+                                        .borderRadius(if (breakpoint >= Breakpoint.MD) 30.px else 20.px)
                                         .margin(
                                                 bottom = if (breakpoint > Breakpoint.MD) 40.px else 15.px,
                                                 right = if (breakpoint > Breakpoint.MD) 40.px else 15.px

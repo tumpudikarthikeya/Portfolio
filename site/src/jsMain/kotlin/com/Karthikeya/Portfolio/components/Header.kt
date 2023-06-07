@@ -1,6 +1,7 @@
 package com.Karthikeya.Portfolio.components
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import com.Karthikeya.Portfolio.models.Sections
 import com.Karthikeya.Portfolio.models.Theme
 import com.Karthikeya.Portfolio.styles.MyNameStyle
@@ -33,16 +34,17 @@ import org.jetbrains.compose.web.dom.Text
 @Composable
 fun Header(onMenuClicked:() -> Unit) {
     val breakpoint = rememberBreakpoint()
+    val maxWidth = remember(breakpoint) {
+        when {
+            breakpoint > Breakpoint.LG -> 65.percent
+            breakpoint > Breakpoint.MD -> 80.percent
+            else -> 95.percent
+        }
+    }
 
     Row( modifier = Modifier
         .position(Position.Fixed)
-        .let { modifier ->
-            when {
-                breakpoint > Breakpoint.LG -> modifier.fillMaxWidth(65.percent)
-                breakpoint > Breakpoint.MD -> modifier.fillMaxWidth(80.percent)
-                else -> modifier.fillMaxWidth(95.percent)
-            }
-        }
+        .fillMaxWidth(maxWidth)
         .margin(bottom = 10.px)
         .padding(20.px)
         .borderRadius(20.px)
