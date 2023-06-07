@@ -36,12 +36,13 @@ fun Header(onMenuClicked:() -> Unit) {
 
     Row( modifier = Modifier
         .position(Position.Fixed)
-        .fillMaxWidth(
+        .let { modifier ->
             when {
-                breakpoint > Breakpoint.LG -> 65.percent
-                breakpoint > Breakpoint.MD -> 80.percent
-                else -> 95.percent
-            }        )
+                breakpoint > Breakpoint.LG -> modifier.fillMaxWidth(65.percent)
+                breakpoint > Breakpoint.MD -> modifier.fillMaxWidth(80.percent)
+                else -> modifier.fillMaxWidth(95.percent)
+            }
+        }
         .margin(bottom = 10.px)
         .padding(20.px)
         .borderRadius(20.px)
