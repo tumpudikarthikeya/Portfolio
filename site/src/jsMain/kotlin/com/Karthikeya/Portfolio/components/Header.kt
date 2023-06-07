@@ -18,6 +18,8 @@ import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.silk.components.icons.fa.FaBars
 import com.varabyte.kobweb.silk.components.icons.fa.IconSize
+import com.varabyte.kobweb.silk.components.layout.breakpoint.displayIf
+import com.varabyte.kobweb.silk.components.layout.breakpoint.displayUntil
 import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.components.style.toModifier
@@ -43,24 +45,23 @@ fun Header(onMenuClicked:() -> Unit) {
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically)
     {
-        LeftSide(breakpoint,onMenuClicked = onMenuClicked)
-        if (breakpoint > Breakpoint.SM) {
-            RightSide()
-        }
+        LeftSide(onMenuClicked = onMenuClicked)
+        RightSide()
     }
 
 }
 
 @Composable
-fun LeftSide(breakpoint: Breakpoint,
+fun LeftSide(
              onMenuClicked :() -> Unit) {
     Row(verticalAlignment = Alignment.CenterVertically) {
-        if (breakpoint <= Breakpoint.SM){
+        //if (breakpoint <= Breakpoint.SM){
             FaBars(size = IconSize.LG,
                 modifier = Modifier
+                    .displayUntil(Breakpoint.MD)
                     .margin(right = 10.px)
                     .onClick { onMenuClicked() })
-        }
+        //}
         P(
             attrs = MyNameStyle.toModifier()
                 .margin(topBottom = 0.px)
@@ -78,6 +79,7 @@ fun LeftSide(breakpoint: Breakpoint,
 @Composable
 fun RightSide() {
     Row (modifier = Modifier
+        .displayIf(Breakpoint.MD)
         .fillMaxWidth().gap(30.px),
         horizontalArrangement = Arrangement.End) {
 

@@ -137,25 +137,35 @@ fun IntroText(breakpoint: Breakpoint) {
                 ) {
                     Text(value = INTRO)
                 }
-                Button(
-                    attrs = MainButtonStyle.toModifier()
-                        .margin(top = 30.px)
-                        .height(55.px)
-                        .border(width = 0.px)
-                        .borderRadius(r = 10.px)
-                        .backgroundColor(Theme.Primary.rgb)
-                        .color(Colors.White)
-                        .cursor(Cursor.Pointer)
-                        .toAttrs()
-                ) {
-                    Link(
-                        path = Sections.Contact.path, text = "Say Hello",
-                        modifier = Modifier.textDecorationLine(TextDecorationLine.None)
+                Link(
+                    path = Sections.Contact.path) {
+                    Button(
+                        attrs = MainButtonStyle.toModifier()
+                            .margin(top = 30.px)
+                            .height(55.px)
+                            .border(width = 0.px)
+                            .borderRadius(r = 10.px)
+                            .backgroundColor(Theme.Primary.rgb)
                             .color(Colors.White)
-                            .fontSize(FontSize.Medium)
-                            .margin(right = 10.px)
-                    )
-                    Image(src = Res.Imaage.send, modifier = Modifier.size(20.px))
+                            .cursor(Cursor.Pointer)
+                            .toAttrs()
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            P(
+                                attrs = Modifier.textDecorationLine(TextDecorationLine.None)
+                                    .color(Colors.White)
+                                    .fontSize(FontSize.Medium)
+                                    .margin(right = 10.px).toAttrs()
+                            ) {
+                                Text(value = "Say Hello")
+                            }
+                            Image(src = Res.Imaage.send, modifier = Modifier.size(20.px))
+                        }
+                    }
                 }
             }
 
