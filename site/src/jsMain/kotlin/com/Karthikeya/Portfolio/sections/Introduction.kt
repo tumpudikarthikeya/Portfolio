@@ -21,6 +21,8 @@ import com.varabyte.kobweb.compose.ui.graphics.Colors
 import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.silk.components.graphics.Image
+import com.varabyte.kobweb.silk.components.layout.breakpoint.displayIf
+import com.varabyte.kobweb.silk.components.layout.breakpoint.displayUntil
 import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.components.style.toModifier
@@ -47,23 +49,24 @@ fun IntroSection() {
 @Composable
 fun IntroContent(breakpoint: Breakpoint){
 
-            if (breakpoint >= Breakpoint.MD) {
+            //if (breakpoint >= Breakpoint.MD) {
                 Row(verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.gap(24.px)
+                        .displayIf(Breakpoint.MD)
                         .fillMaxWidth()) {
                     SocialBar()
                     IntroText(breakpoint)
                     IntroImage(breakpoint)
                 }
-            } else {
-                Column(horizontalAlignment = Alignment.Start, modifier = Modifier.gap(24.px).fillMaxWidth()) {
+       //     } else {
+                Column(horizontalAlignment = Alignment.Start, modifier = Modifier.gap(24.px).displayUntil(Breakpoint.MD).fillMaxWidth()) {
                     Row(verticalAlignment = Alignment.CenterVertically,modifier = Modifier.gap(24.px).fillMaxWidth()) {
                         SocialBar()
                         IntroImage(breakpoint)
                     }
                     IntroText(breakpoint)
                 }
-            }
+          //  }
         }
 
 

@@ -19,6 +19,7 @@ import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.silk.components.icons.fa.FaBars
 import com.varabyte.kobweb.silk.components.icons.fa.IconSize
+import com.varabyte.kobweb.silk.components.layout.breakpoint.displayBetween
 import com.varabyte.kobweb.silk.components.layout.breakpoint.displayIf
 import com.varabyte.kobweb.silk.components.layout.breakpoint.displayUntil
 import com.varabyte.kobweb.silk.components.navigation.Link
@@ -34,18 +35,10 @@ import org.jetbrains.compose.web.dom.Text
 @Composable
 fun Header(onMenuClicked:() -> Unit) {
     val breakpoint = rememberBreakpoint()
-    val maxWidth = remember(breakpoint) {
-        when {
-            breakpoint > Breakpoint.LG -> 65.percent
-            breakpoint > Breakpoint.MD -> 80.percent
-            else -> 95.percent
-        }
-    }
 
     Row( modifier = Modifier
         .position(Position.Fixed)
-        .fillMaxWidth(maxWidth)
-        .margin(bottom = 10.px)
+        .fillMaxWidth(if(breakpoint > Breakpoint.LG) 65.percent else if (breakpoint > Breakpoint.MD) 80.percent  else  95.percent)        .margin(bottom = 10.px)
         .padding(20.px)
         .borderRadius(20.px)
         .zIndex(1)
