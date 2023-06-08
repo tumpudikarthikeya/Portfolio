@@ -1,6 +1,8 @@
 package com.Karthikeya.Portfolio.sections
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.currentRecomposeScope
+import androidx.compose.runtime.rememberCoroutineScope
 import com.Karthikeya.Portfolio.components.AboutMeCard
 import com.Karthikeya.Portfolio.components.SectionTitle
 import com.Karthikeya.Portfolio.models.Sections
@@ -14,10 +16,13 @@ import com.varabyte.kobweb.compose.css.Cursor
 import com.varabyte.kobweb.compose.css.FontSize
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.TextDecorationLine
+import com.varabyte.kobweb.compose.css.functions.url
+import com.varabyte.kobweb.compose.file.saveToDisk
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
 import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.foundation.layout.Row
+import com.varabyte.kobweb.compose.http.http
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.graphics.Colors
@@ -30,11 +35,16 @@ import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
+import kotlinx.browser.document
+import kotlinx.browser.window
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.Button
 import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Text
+import org.w3c.dom.get
+import org.w3c.files.File
 
 @Composable
 fun AboutMeSection() {
@@ -107,13 +117,16 @@ fun AboutText(breakpoint: Breakpoint) {
         ) {
             Text(value = ABOUT_ME)
         }
-        Link(path = "https://drive.google.com/file/d/1kOHqyVgRw2KdiE7sswCFCmVJc_8U2vA4/view?usp=sharing",
-            modifier = Modifier.textDecorationLine(TextDecorationLine.None)) {
+            val scope = rememberCoroutineScope()
             Button(
                 attrs = MainButtonStyle.toModifier()
                     .height(60.px)
                     .id("Resume")
                     .border(width = 0.px)
+                    .onClick {scope.launch {
+                        document.saveToDisk("Resume", window.http.get("/resume.pdf"),"application/pdf")
+                    }
+                    }
                     .borderRadius(r = 20.px)
                     .backgroundColor(Theme.Primary.rgb)
                     .color(Colors.White)
@@ -133,7 +146,6 @@ fun AboutText(breakpoint: Breakpoint) {
                     }
                     Image(fileDownload)
                 }
-            }
         }
     }
 }
